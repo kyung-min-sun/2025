@@ -8,16 +8,17 @@ import {
 } from "~/components/ui/card";
 
 import { Button } from "~/components/ui/button";
+import Link from "next/link";
 
 export default async function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
+    <main className="flex min-h-screen flex-col items-center justify-center gap-4">
       <Card>
         <CardHeader>
           <CardTitle>Daily Resolutions</CardTitle>
           <CardDescription>Mark your resolutions as completed.</CardDescription>
         </CardHeader>
-        <CardContent className="w-[400px] text-sm">
+        <CardContent className="w-[800px] text-sm">
           <div className="flex flex-col gap-2">
             <div className="bg-muted flex flex-row items-center justify-between rounded-md p-4">
               <p>Cold Shower</p>
@@ -37,15 +38,8 @@ export default async function Home() {
                 <Check />
               </Button>
             </div>
-
             <div className="bg-muted flex flex-row items-center justify-between rounded-md p-4">
               <p>Cold Outreach</p>
-              <Button size="icon">
-                <Check />
-              </Button>
-            </div>
-            <div className="bg-muted flex flex-row items-center justify-between rounded-md p-4">
-              <p>Compound Lift</p>
               <Button size="icon">
                 <Check />
               </Button>
@@ -69,6 +63,12 @@ export default async function Home() {
           </div>
         </CardContent>
       </Card>
+      <Button asChild variant="outline">
+        <Link href="/calendar">
+          <Calendar className="size-4" />
+          Progress
+        </Link>
+      </Button>
     </main>
   );
 }
