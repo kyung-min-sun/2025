@@ -11,7 +11,7 @@ import { myResolutions } from "../my-resolutions";
 
 export default async function CalendarPage() {
   const resolutions = await db.resolution.findMany();
-  console.log(resolutions);
+
   const days = new Array(365)
     .fill(0)
     .map(
