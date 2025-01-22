@@ -12,7 +12,7 @@ import { cn } from "~/lib/utils";
 import { myResolutions } from "../my-resolutions";
 
 export default function CalendarPage() {
-  const { data: resolutions } = api.resolution.getResolutions.useQuery();
+  const { data: resolutions } = api.resolution.getResolutions.useQuery({});
 
   const days = new Array(365)
     .fill(0)

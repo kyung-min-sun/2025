@@ -3,9 +3,20 @@ import { publicProcedure } from "../trpc";
 import { z } from "zod";
 
 export const resolutionRouter = createTRPCRouter({
-  getResolutions: publicProcedure.query(async ({ ctx: { db } }) => {
-    return await db.resolution.findMany();
-  }),
+  getResolutions: publicProcedure
+    .input(z.object({ date: z.optional(z.date()) }))
+    .query(async ({ ctx: { db }, input: { date } }) => {
+      return await db.resolution.findMany({
+        where: {
+          ...(date && {
+            createdAt: {
+              gte: date,
+              lt: new Date(date.getTime() + 24 * 60 * 60 * 1000),
+            },
+          }),
+        },
+      });
+    }),
   createResolution: publicProcedure
     .input(
       z.object({

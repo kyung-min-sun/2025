@@ -10,7 +10,6 @@ import {
 import { Check, X } from "lucide-react";
 
 import { Button } from "~/components/ui/button";
-import { Calendar } from "lucide-react";
 import { api } from "~/trpc/react";
 import { cn } from "~/lib/utils";
 import { myResolutions } from "./my-resolutions";
@@ -18,8 +17,10 @@ import { useState } from "react";
 
 export function ResolutionCard({
   todaysResolutions,
+  picker,
 }: {
   todaysResolutions: { name: string; id: number; createdAt: Date }[];
+  picker: React.ReactNode;
 }) {
   const [myResolutionsCompleted, setMyResolutionsCompleted] = useState(
     myResolutions.flatMap((resolution) => {
@@ -77,16 +78,7 @@ export function ResolutionCard({
             </div>
           ))}
         </div>
-        <div className="flex flex-row gap-2 pt-8">
-          <Calendar className="size-4" />
-          <div className="text-muted-foreground text-xs">
-            {new Date().toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </div>
-        </div>
+        <div className="pt-8">{picker}</div>
       </CardContent>
     </Card>
   );
