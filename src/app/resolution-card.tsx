@@ -49,7 +49,7 @@ export function ResolutionCard({
       </CardHeader>
       <CardContent className="w-[800px] text-sm">
         <div className="flex flex-col gap-2">
-          {myResolutionsCompleted?.map(({ name, completed, id }, i) => (
+          {myResolutionsCompleted?.map(({ name, completed, id }) => (
             <div
               key={name}
               className={cn(
